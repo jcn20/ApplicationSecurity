@@ -1,7 +1,0 @@
-install: make get-depts
-language: c
-compiler: 
-    - clang
-    - gcc
-
-script: make
