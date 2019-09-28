@@ -1,4 +1,4 @@
-/
+
 // Created by Julio C Nunez on 2019-09-28.
 //
 // Assistance and guidance from:
@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include "dictionary.h
+#include "dictionary.h"
 #include <stdlib.h>
 
 bool check_word(const char* word, hashmap hashtable[])
