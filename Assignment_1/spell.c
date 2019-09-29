@@ -64,7 +64,6 @@ bool check_word(const char* word, hashmap_t hashtable[]) {
 
 
 bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]){
-    const char* word;
     for(int i = 0; i < HASH_SIZE; i++){ // Loop through the hash table and set all values to NULL.
         hashtable[i] = NULL;
     }
