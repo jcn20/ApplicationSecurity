@@ -16,6 +16,7 @@
 
 bool check_word(const char* word, hashmap_t hashtable[])
 {
+
     // We need to create a lower case word
 
     int str_length = strlen(word);
