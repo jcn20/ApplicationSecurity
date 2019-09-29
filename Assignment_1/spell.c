@@ -126,7 +126,7 @@ int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]){
             memmove(word, word + 1, strlen(word));
         }
 
-        if(ispunct(word[lgth - 1])){
+        if(ispunct(word[strlen(word) - 1])){
             word[strlen(word) - 1] = '\0';
         }
 
