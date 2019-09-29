@@ -70,7 +70,7 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]){
 
     // Opening files now.
     // Create a FILE* and call it dict_file
-    FILE* dict
+    FILE* dict;
     dict = fopen(dictionary_file, "r"); // Open the dictionary file to read it.
 
     if(dict == NULL)
