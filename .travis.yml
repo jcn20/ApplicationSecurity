@@ -1,8 +1,9 @@
 language: c
-compiler: 
-    - clang
-    - gcc
-script: 
-   - gcc hello.c
-   - gcc -o hello hello.c
-   - ./hello
+compiler: gcc
+
+before_install:
+        - sudo apt-get update
+        - sudo apt-get install -y check
+script:
+        - make
+        - make test
