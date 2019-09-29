@@ -16,7 +16,7 @@
 
 bool check_word(const char* word, hashmap_t hashtable[]) {
    const char* lower_word = tolower(word);
-   int bucket = hashtable[lower_word];
+   int bucket = hash_function[lower_word];
    node* cursor = hashtable[bucket];
 
    while(cursor != NULL){
@@ -26,7 +26,7 @@ bool check_word(const char* word, hashmap_t hashtable[]) {
        cursor = cursor->next;
    }
 
-   bucket = hashtable[word];
+   bucket = hash_function[word];
    cursor = hashtable[bucket];
 
    while(cursor != NULL){
