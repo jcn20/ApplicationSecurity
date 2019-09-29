@@ -37,7 +37,7 @@ START_TEST(test_check_words_normal)
     expected[2] = "betta";
     char *misspelled[MAX_MISSPELLED];
     for(int i=0; i < MAX_MISSPELLED; i++){
-        printf("%d ", expected[i]);
+        printf("%d ", misspelled[i]);
     }
     FILE *fp = fopen("test1.txt", "r");
     int num_misspelled = check_words(fp, hashtable, misspelled);
