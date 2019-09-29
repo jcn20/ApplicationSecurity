@@ -70,8 +70,8 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]){
 
     // Opening files now.
     // Create a FILE* and call it dict_file
-    FILE* dict_file;
-    dict_file = fopen(dictionary_file, "r"); // Open the dictionary file to read it.
+    FILE* dict
+    dict = fopen(dictionary_file, "r"); // Open the dictionary file to read it.
 
     if(dict_file == NULL)
     {
@@ -81,7 +81,7 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]){
     char word_buffer[LENGTH+1]; // Gonna need a buffer when we loop the file. Not in the pseudocode.
     // Might not need it but will use it for now and see how it works.
 
-    while (fscanf(dict_file, "%s", word_buffer) > 0) // While we're not at the EOF.
+    while (fscanf(dict, "%s", word_buffer) > 0) // While we're not at the EOF.
     {
         // Create new_node, allocate the memory to keep the code safe and not to break it.
         node* new_node = malloc(sizeof(node)); // Needs the same amount of memory - can't create a new node otherwise. Might break.
@@ -116,16 +116,13 @@ int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]){
 
     // To make a buffer to stop any issues from arising with a buffer overflow while
     // reading the file.
-    char word[LENGTH+1];
+    // char word[LENGTH+1];
 
     if(fp == NULL){
         // Exit the program if a file isn't read in or it has nothing.
         exit(1);
     }
 
-    // Read the file line by line until the end of the file.
-    // Use the buffer to stop any buffer overflows from happening.
-    // Split on a space using '%s'
     while (fscanf(fp, "%s", word) > 0) {
         if (ispunct(word[0])) {
             memmove(word, word + 1, strlen(word));
