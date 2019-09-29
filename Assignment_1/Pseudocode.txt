@@ -1,4 +1,4 @@
-zfuction check_word(string word, hashmap hashtable[])
+fuction check_word(string word, hashmap hashtable[])
 {
     Set int bucket to the output of hash_function(word).
     Set hashmap_t cursor equal to hashmap[bucket].

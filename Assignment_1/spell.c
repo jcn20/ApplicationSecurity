@@ -86,7 +86,7 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]){
         // Use strcopy to make new_node->word equal to the buffer.
         strcpy(new_node->word, word_buffer);
 
-        int bucket = hash_function(word);
+        int bucket = hash_function(new_node->word);
     }
 
     if (hashtable[bucket] == NULL)
