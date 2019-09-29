@@ -106,7 +106,7 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]){
     }
 
 
-    fclose(dict_file);
+    fclose(dict);
     return true; // To return a value to the function.
 }
 
