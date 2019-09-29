@@ -128,7 +128,7 @@ int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]){
 
         strcpy(new_node->word, word_buffer_2);
 
-        if(check_word(word) == false){
+        if(check_word()== false){
             for(int i=0; i < MAX_MISSPELLED; i++){
                 misspelled[i] = malloc(strlen(word_buffer_2) + 1);
                 misspelled[i] = strcpy(misspelled[i], word_buffer_2);
