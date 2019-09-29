@@ -76,13 +76,16 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]){
     char word_buffer[LENGTH+1]; // Gonna need a buffer when we loop the file. Not in the pseudocode.
     // Might not need it but will use it for now and see how it works.
 
-    while (fscanf(dict, "%s", word_buffer) > 0) // While we're not at the EOF.
+    while (fscanf(dict, "%45s", word_buffer) > 0) // While we're not at the EOF.
     {
         // Create new_node, allocate the memory to keep the code safe and not to break it.
         node* new_node = malloc(sizeof(node)); // Needs the same amount of memory - can't create a new node otherwise. Might break.
 
         // Set new_node's next to NULL
         new_node->next = NULL;
+
+        // Change the words in the dictionary to be lower case.
+        word = tolower(word);
 
         // Use strcopy to make new_node->word equal to the buffer.
         strcpy(new_node->word, word_buffer);
@@ -116,7 +119,7 @@ int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]){
 
     if(fp == NULL){
         // Exit the program if a file isn't read in or it has nothing.
-        exit(1);
+        return 0;
     }
 
     while (fscanf(fp, "%s", word_buffer) > 0) {
