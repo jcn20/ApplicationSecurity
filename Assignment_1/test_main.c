@@ -75,7 +75,7 @@ main(void)
     srunner_run_all(runner, CK_NORMAL);
     failed = srunner_ntests_failed(runner);
     srunner_free(runner);
-    for(i=0; i < MAX_MISSPELLED; i++){
+    for(int i=0; i < MAX_MISSPELLED; i++){
         printf("%d ", arr[i]);
     }
     printf("\n");
