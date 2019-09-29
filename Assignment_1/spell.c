@@ -122,6 +122,15 @@ int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]){
     // Split on a space using '%s'
     while (fscanf(fp, "%s", word) > 0)
     {
+        if(ispunct(word[0])){
+            memmove(word, word + 1, strlen(word));
+        }
+
+        if(ispunct(word[lgth - 1])){
+            word[strlen(word) - 1] = '\0';
+        }
+
+        }
         if(check_word(word, hashtable)== false){
             for(int i=0; i < MAX_MISSPELLED; i++)
             {
