@@ -18,7 +18,6 @@ bool check_word(const char* word, hashmap_t hashtable[]) {
     // We need to create a lower case word
 
 
-
     int str_length = strlen(word);
     char lowered[LENGTH + 1];
 
@@ -49,6 +48,15 @@ bool check_word(const char* word, hashmap_t hashtable[]) {
         cursor = cursor->next;
     }
 
+    bucket = hash_function(word);
+    cursor = hashtable[bucket];
+
+    while (cursor != NULL) {
+        if (strcmp(word, cursor->word) == 0) {
+            return true;
+        }
+        cursor = cursor->next;
+    }
     // All words are now lower case so no need to re-do our work.
 
     return false; // Assumes no match, so we return False to account for that.
