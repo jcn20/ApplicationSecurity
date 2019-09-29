@@ -39,7 +39,7 @@ bool check_word(const char* word, hashmap_t hashtable[])
 
     // Next part
 
-    int bucket = hash_function()tion(word);
+    int bucket = hash_function()(word);
     node* cursor = hashtable[bucket];
     while (cursor != NULL)
     {
