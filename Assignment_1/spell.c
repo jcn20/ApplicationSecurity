@@ -15,51 +15,27 @@
 #include "dictionary.h"
 
 bool check_word(const char* word, hashmap_t hashtable[]) {
-    // We need to create a lower case word
+   char lower_word = to_lower(word);
+   int bucket = hashmap[lower_word];
+   node* cursor = hashtable[bucket];
 
+   while(cursor != NULL){
+       if(strcmp(lower_word, cursor->word)){
+           return true;
+       }
+       cursor = cursor->next;
+   }]
 
-    int str_length = strlen(word);
-    char lowered[LENGTH + 1];
+   bucket = hashmap[word];
+   cursor = hashtable[bucket];
 
-    // Take the characters for each word  and change it to lower case
-
-    for (int i = 0; i < str_length; i++) {
-        if (isupper(word[i])) { // if any character is uppercase, change to lowercase
-            lowered[i] = tolower(word[i]);
-        } else {
-            lowered[i] = word[i]; // Already lower case, so just copy it over.
-        }
-    }
-
-    // Protect against overflow
-    // Add null character to the end of the array to stop that from happening.
-
-    lowered[str_length] = '\0';
-
-    // Next part
-
-    int bucket = hash_function(lowered);
-    node *cursor = hashtable[bucket];
-    while (cursor != NULL) {
-        if (strcmp(lowered, cursor->word) == 0) {
-            return true;
-        }
-
-        cursor = cursor->next;
-    }
-
-    bucket = hash_function(word);
-    cursor = hashtable[bucket];
-
-    while (cursor != NULL) {
-        if (strcmp(word, cursor->word) == 0) {
-            return true;
-        }
-        cursor = cursor->next;
-    }
-    // All words are now lower case so no need to re-do our work.
-
-    return false; // Assumes no match, so we return False to account for that.
+   while(cursor != NULL){
+       if(strcmp(word, cursor->word)){
+           return true;
+       }
+       cursor = cursor->next;
+   }
+   return false;
 }
 
 
