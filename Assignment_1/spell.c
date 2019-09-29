@@ -24,7 +24,7 @@ bool check_word(const char* word, hashmap_t hashtable[]) {
            return true;
        }
        cursor = cursor->next;
-   }]
+   }
 
    bucket = hashtable[word];
    cursor = hashtable[bucket];
