@@ -87,19 +87,20 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]){
         strcpy(new_node->word, word_buffer);
 
         int bucket = hash_function(new_node->word);
+
+        if (hashtable[bucket] == NULL)
+        {
+            hashtable[bucket] = new_node;
+        }
+
+        else{
+            new_node->next = hashtable[bucket];
+            hashtable[bucket] = new_node;
+        }
     }
 
-    if (hashtable[bucket] == NULL)
-    {
-        hashtable[bucket] = new_node;
-    }
 
-    else{
-        new_node->next = hashtable[bucket];
-        hashtable[bucket] = new_node;
-    }
-
-    fclose(dictionary_file);
+    fclose(dict_file);
     return true; // To return a value to the function.
 }
 
