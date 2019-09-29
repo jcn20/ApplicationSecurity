@@ -127,7 +127,7 @@ int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]){
             word[strlen(word) - 1] = '\0';
         }
 
-        printf("%d", word[0]);
+        printf("%s", word[0]);
         printf("\n");
 
         if (check_word(word, hashtable) == false) {
