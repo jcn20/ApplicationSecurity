@@ -73,7 +73,7 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]){
     FILE* dict
     dict = fopen(dictionary_file, "r"); // Open the dictionary file to read it.
 
-    if(dict_file == NULL)
+    if(dict == NULL)
     {
         return false; // Well, nothing inside of it. Might as well.
     }
@@ -116,7 +116,7 @@ int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]){
 
     // To make a buffer to stop any issues from arising with a buffer overflow while
     // reading the file.
-    // char word[LENGTH+1];
+    char word[LENGTH+1];
 
     if(fp == NULL){
         // Exit the program if a file isn't read in or it has nothing.
