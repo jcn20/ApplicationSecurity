@@ -63,10 +63,11 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]){
     }
 
     // Opening files now.
-    // Create a FILE* and call it dictionary_file
-    dictionary_file = fopen(dictionary_file, "r"); // Open the dictionary file to read it.
+    // Create a FILE* and call it dict_file
+    FILE* dict_file;
+    dict_file = fopen(dictionary_file, "r"); // Open the dictionary file to read it.
 
-    if(dictionary_file == NULL)
+    if(dict_file == NULL)
     {
         return false; // Well, nothing inside of it. Might as well.
     }
@@ -74,7 +75,7 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]){
     char word_buffer[LENGTH+1]; // Gonna need a buffer when we loop the file. Not in the pseudocode.
     // Might not need it but will use it for now and see how it works.
 
-    while (fscanf(dictionary_file, "%s", word_buffer) > 0) // While we're not at the EOF.
+    while (fscanf(dict_file, "%s", word_buffer) > 0) // While we're not at the EOF.
     {
         // Create new_node, allocate the memory to keep the code safe and not to break it.
         node* new_node = malloc(sizeof(node)); // Needs the same amount of memory - can't create a new node otherwise. Might break.
