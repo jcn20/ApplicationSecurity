@@ -9,12 +9,12 @@
 
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #include "dictionary.h"
-#include <stdlib.h>
 
-bool check_word(const char* word, hashmap hashtable[])
+bool check_word(const char* word, hashmap_t hashtable[])
 {
     // We need to create a lower case word
 
@@ -45,30 +45,30 @@ bool check_word(const char* word, hashmap hashtable[])
     {
         if (strcmp(lowered, cursor->word) == 0)
         {
-            return True;
+            return true;
         }
         cursor = cursor->next;
     }
 
     // All words are now lower case so no need to re-do our work.
 
-    return False; // Assumes no match, so we return False to account for that.
+    return false; // Assumes no match, so we return False to account for that.
 }
 
 
-bool load_dictionary(const char* dictionary, hashmap hashtable[]){
+bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]){
     for(int i = 0; i < HASH_SIZE; i++){ // Loop through the hash table and set all values to NULL.
         hashtable[i] = NULL;
     }
 
     // Opening files now.
     // Create a FILE* and call it dictionary_file
-    FILE* dict_file;
+    FILE* dictionary_file;
     dictionary_file = fopen(dictionary, "r"); // Open the dictionary file to read it.
 
     if(dictionary_file == NULL)
     {
-        return False; // Well, nothing inside of it. Might as well.
+        return false; // Well, nothing inside of it. Might as well.
     }
 
     char word_buffer[LENGTH+1]; // Gonna need a buffer when we loop the file. Not in the pseudocode.
@@ -99,11 +99,11 @@ bool load_dictionary(const char* dictionary, hashmap hashtable[]){
     }
 
     fclose(dictionary_file);
-    return True; // To return a value to the function.
+    return true; // To return a value to the function.
 }
 
 
-int check_words(file fp, hashmap hashtable[], string misspelled[]){
+int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]){
     int num_misspelled = 0;
     file_name = fopen(fp, "r");
 
@@ -126,7 +126,7 @@ int check_words(file fp, hashmap hashtable[], string misspelled[]){
 
         strcpy(new_node->word, word_buffer_2);
 
-        if(check_word(word) == False){
+        if(check_word(word) == false){
             for(int i=0; i < MAX_MISSPELLED; i++){
                 misspelled[i] = malloc(strlen(word_buffer_2) + 1);
                 misspelled[i] = strcpy(misspelled[x], word_buffer_2);
@@ -136,6 +136,4 @@ int check_words(file fp, hashmap hashtable[], string misspelled[]){
     }
 
     return num_misspelled;
-
-
 }
