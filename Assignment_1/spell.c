@@ -134,6 +134,7 @@ int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]){
         if (ispunct(word[strlen(word) - 1])) {
             word[strlen(word) - 1] = '\0';
         }
+        printf("%d\n", word);
 
         if (check_word(word, hashtable) == false) {
             for (int i = 0; i < MAX_MISSPELLED; i++) {
