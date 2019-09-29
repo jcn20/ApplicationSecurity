@@ -104,8 +104,8 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]){
 
 
 int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]){
+    const char* word;
     int num_misspelled = 0;
-    file_name = fopen(fp, "r");
 
     // To make a buffer to stop any issues from arising with a buffer overflow while
     // reading the file.
@@ -119,7 +119,7 @@ int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]){
     // Read the file line by line until the end of the file.
     // Use the buffer to stop any buffer overflows from happening.
     // Split on a space using '%s'
-    while (fscanf(file_name, "%s", word_buffer_2) > 0)
+    while (fscanf(fp, "%s", word_buffer_2) > 0)
     {
         node* new_node = malloc(sizeof(node));
         new_node->next = NULL;
