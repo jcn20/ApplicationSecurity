@@ -15,39 +15,49 @@
 #include "dictionary.h"
 
 bool check_word(const char* word, hashmap_t hashtable[]) {
-    int word_length = strlen(word);
-    char lower_word[LENGTH+1];
+    bool check(const char* word)
+    {
+        int word_length = strlen(word);
+        char lower_word[LENGTH+1];
 
-    for (int i = 0; i < word_length; i++){
-        if (isupper(word[i])) {
-            lower_word[i] = tolower(word[i]);
+        // Convert word to lowercase to accurately compare to hash table.
+        for (int i = 0; i < word_length; i++)
+        {
+            // If character is uppercase, make it lowercase.
+            if(isupper(word[i]))
+            {
+                lower_word[i] = tolower(word[i]) ;
+            }
+                // Otherwise it's already lowercase or it's not a letter.
+            else
+            {
+                lower_word[i] = word[i];
+            }
         }
-        else{
-            lower_word[i] = word[i];
+        // Add null character to end of char array.
+        lower_word[word_length] = '\0';
+        // Use hash function to find correct "bucket" to place word.
+        int bucket = hash_function(lower_word);
+        // Set cursor to first node in bucket.
+        node* cursor = hashtable[bucket];
+        // Until the end of the linked list is reached (cursor == NULL),
+        // compare each word stored in each node to lower_word.  If they're
+        // the same, then the word is in the dictionary and is not mispelled.
+        // Otherwise, it is spelled incorrectly.
+        while (cursor != NULL)
+        {
+            if (strcmp(lower_word, cursor->word) == 0)
+            {
+                // If lowercase'd word is the same as another in the bucket,
+                // it's a match and return true.
+                return true;
+            }
+            cursor = cursor->next;
         }
+
+        return false;
     }
-    lower_word[word_length] = '\0';
-   int bucket = hash_function(lower_word);
-   node* cursor = hashtable[bucket];
 
-   while(cursor != NULL){
-       if(strcmp(lower_word, cursor->word)){
-           return true;
-       }
-       cursor = cursor->next;
-   }
-
-   bucket = hash_function(word);
-   cursor = hashtable[bucket];
-
-   while(cursor != NULL){
-       if(strcmp(word, cursor->word)){
-           return true;
-       }
-       cursor = cursor->next;
-   }
-   return false;
-}
 
 
 bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]){
