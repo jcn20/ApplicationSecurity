@@ -14,21 +14,19 @@
 #include <ctype.h>
 #include "dictionary.h"
 
-bool check_word(const char* word, hashmap_t hashtable[])
-{
-
+bool check_word(const char* word, hashmap_t hashtable[]) {
+    int
     // We need to create a lower case word
 
     int str_length = strlen(word);
-    char lowered[LENGTH+1];
+    char lowered[LENGTH + 1];
 
     // Take the characters for each word  and change it to lower case
 
-    for(int i = 0; i < str_length; i++){
-        if(isupper(word[i])){ // if any character is uppercase, change to lowercase
+    for (int i = 0; i < str_length; i++) {
+        if (isupper(word[i])) { // if any character is uppercase, change to lowercase
             lowered[i] = tolower(word[i]);
-        }
-        else{
+        } else {
             lowered[i] = word[i]; // Already lower case, so just copy it over.
         }
     }
@@ -41,15 +39,22 @@ bool check_word(const char* word, hashmap_t hashtable[])
     // Next part
 
     int bucket = hash_function(lowered);
-    node* cursor = hashtable[bucket];
-    while (cursor != NULL)
-    {
-        if (strcmp(lowered, cursor->word) == 0)
-        {
+    node *cursor = hashtable[bucket];
+    while (cursor != NULL) {
+        if (strcmp(lowered, cursor->word) == 0) {
             return true;
         }
 
         cursor = cursor->next;
+    }
+
+    bucket = hash_function(word);
+    cursor = hashtable[bucket];
+
+    while (cursor != NULL) {
+        if (strcmp(word, cursor->word) == 0) {
+            return true;
+        }
     }
 
     // All words are now lower case so no need to re-do our work.
