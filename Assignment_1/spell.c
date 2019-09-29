@@ -120,25 +120,23 @@ int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]){
     // Read the file line by line until the end of the file.
     // Use the buffer to stop any buffer overflows from happening.
     // Split on a space using '%s'
-    while (fscanf(fp, "%s", word) > 0)
-    {
-        if(ispunct(word[0])){
+    while (fscanf(fp, "%s", word) > 0) {
+        if (ispunct(word[0])) {
             memmove(word, word + 1, strlen(word));
         }
 
-        if(ispunct(word[strlen(word) - 1])){
+        if (ispunct(word[strlen(word) - 1])) {
             word[strlen(word) - 1] = '\0';
         }
 
-        }
-        if(check_word(word, hashtable)== false){
-            for(int i=0; i < MAX_MISSPELLED; i++)
-            {
+        if (check_word(word, hashtable) == false) {
+            for (int i = 0; i < MAX_MISSPELLED; i++) {
                 misspelled[i] = malloc(strlen(word) + 1);
                 misspelled[i] = strcpy(misspelled[i], word);
                 num_misspelled++;
             }
         }
-    return num_misspelled;
+    }
+        return num_misspelled;
     }
 
