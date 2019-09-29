@@ -64,6 +64,7 @@ bool check_word(const char* word, hashmap_t hashtable[]) {
 
 
 bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]){
+    const char* word;
     for(int i = 0; i < HASH_SIZE; i++){ // Loop through the hash table and set all values to NULL.
         hashtable[i] = NULL;
     }
@@ -134,7 +135,6 @@ int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]){
         if (ispunct(word[strlen(word) - 1])) {
             word[strlen(word) - 1] = '\0';
         }
-        printf("%d\n", word);
 
         if (check_word(word, hashtable) == false) {
             for (int i = 0; i < MAX_MISSPELLED; i++) {
