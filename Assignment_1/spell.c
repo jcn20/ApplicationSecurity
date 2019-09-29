@@ -15,8 +15,6 @@
 #include "dictionary.h"
 
 bool check_word(const char* word, hashmap_t hashtable[]) {
-    bool check(const char* word)
-    {
         int word_length = strlen(word);
         char lower_word[LENGTH+1];
 
