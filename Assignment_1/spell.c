@@ -106,7 +106,6 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]){
 
 
 int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]){
-    const char* word;
     int num_misspelled = 0;
 
     // To make a buffer to stop any issues from arising with a buffer overflow while
@@ -128,7 +127,7 @@ int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]){
 
         strcpy(new_node->word, word_buffer_2);
 
-        if(check_word()== false){
+        if(check_word(word, hashtable)== false){
             for(int i=0; i < MAX_MISSPELLED; i++){
                 misspelled[i] = malloc(strlen(word_buffer_2) + 1);
                 misspelled[i] = strcpy(misspelled[i], word_buffer_2);
