@@ -111,28 +111,33 @@ int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]){
 
     // To make a buffer to stop any issues from arising with a buffer overflow while
     // reading the file.
-    char word[LENGTH+1];
+
+    char word_buffer[LENGTH+1];
 
     if(fp == NULL){
         // Exit the program if a file isn't read in or it has nothing.
         exit(1);
     }
 
-    while (fscanf(fp, "%s", word) > 0) {
-        if (ispunct(word[0])) {
-            memmove(word, word + 1, strlen(word));
+    while (fscanf(fp, "%s", word_buffer) > 0) {
+        node* new_node = malloc(sizeof(node));
+
+        new_node->next = NULL;
+
+        strcpy(new_node->word, word_buffer);
+
+        if (ispunct(word_buffer[0])) {
+            memmove(word_buffer, word_buffer + 1, strlen(word_buffer));
         }
 
-        if (ispunct(word[strlen(word) - 1])) {
+        if (ispunct(word[strlen(word_buffer) - 1])) {
             word[strlen(word) - 1] = '\0';
         }
 
-        printf("%s", word[0]);
-        printf("\n");
 
-        if (check_word(word, hashtable) == false) {
+        if (check_word(word_buffer, hashtable) == false) {
             for (int i = 0; i < MAX_MISSPELLED; i++) {
-                misspelled[i] = malloc(strlen(word) + 1);
+                misspelled[i] = malloc(strlen(word_buffer) + 1);
                 misspelled[i] = strcpy(misspelled[i], word);
                 num_misspelled++;
             }
