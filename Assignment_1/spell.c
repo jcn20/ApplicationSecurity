@@ -19,7 +19,12 @@ bool check_word(const char* word, hashmap_t hashtable[]) {
     char lower_word[LENGTH+1];
 
     for (int i = 0; i < word_length; i++){
-        lower_word[i]  = tolower(word[i]);
+        if (isupper(word[i])) {
+            lower_word[i] = tolower(word[i]);
+        }
+        else{
+            lower_word[i] = word[i];
+        }
     }
     lower_word[word_length] = '\0';
    int bucket = hash_function(lower_word);
