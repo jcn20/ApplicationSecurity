@@ -15,7 +15,13 @@
 #include "dictionary.h"
 
 bool check_word(const char* word, hashmap_t hashtable[]) {
-   const char* lower_word = tolower(word);
+    int word_length = strlen(word);
+    char lower_word[LENGTH+1];
+
+    for (int i = 0; i < word_length; i++){
+        lower_word[i]  = tolower(word[i]);
+    }
+    lower_word[word_length] = '\0';
    int bucket = hash_function[lower_word];
    node* cursor = hashtable[bucket];
 
