@@ -39,7 +39,7 @@ bool check_word(const char* word, hashmap_t hashtable[])
 
     // Next part
 
-    int bucket = hash_function()(word);
+    int bucket = hash_function(word);
     node* cursor = hashtable[bucket];
     while (cursor != NULL)
     {
@@ -63,8 +63,7 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]){
 
     // Opening files now.
     // Create a FILE* and call it dictionary_file
-    FILE* dictionary_file;
-    dictionary_file = fopen(dictionary, "r"); // Open the dictionary file to read it.
+    dictionary_file = fopen(dictionary_file, "r"); // Open the dictionary file to read it.
 
     if(dictionary_file == NULL)
     {
