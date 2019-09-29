@@ -36,6 +36,9 @@ START_TEST(test_check_words_normal)
     expected[1] = "skyn";
     expected[2] = "betta";
     char *misspelled[MAX_MISSPELLED];
+    for(int i=0; i < MAX_MISSPELLED; i++){
+        printf("%d ", expected[i]);
+    }
     FILE *fp = fopen("test1.txt", "r");
     int num_misspelled = check_words(fp, hashtable, misspelled);
     ck_assert(num_misspelled == 3);
@@ -63,7 +66,7 @@ check_word_suite(void)
     return suite;
 }
 
-int
+
 main(void)
 {
     int failed;
@@ -75,9 +78,6 @@ main(void)
     srunner_run_all(runner, CK_NORMAL);
     failed = srunner_ntests_failed(runner);
     srunner_free(runner);
-    for(int i=0; i < MAX_MISSPELLED; i++){
-        printf("%d ", misspelled[i]);
-    }
     printf("\n");
     return (failed == 0 ? EXIT_SUCCESS : EXIT_FAILURE);
 
