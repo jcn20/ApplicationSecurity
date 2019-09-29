@@ -47,11 +47,11 @@ bool check_word(const char* word, hashmap_t hashtable[]) {
         cursor = cursor->next;
     }
 
-    bucket = hash_function(word);
-    cursor = hashtable[bucket];
+    int bucket2 = hash_function(word);
+    node* cursor2 = hashtable[bucket2];
 
-    while (cursor != NULL) {
-        if (strcmp(word, cursor->word) == 0) {
+    while (cursor2 != NULL) {
+        if (strcmp(word, cursor2->word) == 0) {
             return true;
         }
     }
