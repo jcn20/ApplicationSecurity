@@ -76,7 +76,7 @@ main(void)
     failed = srunner_ntests_failed(runner);
     srunner_free(runner);
     for(i=0; i < MAX_MISSPELLED; i++){
-        printf("%d ", arr[i];)
+        printf("%d ", arr[i]);
     }
     printf("\n");
     return (failed == 0 ? EXIT_SUCCESS : EXIT_FAILURE);
