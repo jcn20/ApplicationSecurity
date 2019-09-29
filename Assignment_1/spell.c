@@ -129,7 +129,7 @@ int check_words(file fp, hashmap hashtable[], string misspelled[]){
         if(check_word(word) == False){
             for(int i=0; i < MAX_MISSPELLED; i++){
                 misspelled[i] = malloc(strlen(word_buffer_2) + 1);
-                misspelled[i] = strcpy(misspelled[x], word_buffer_2;
+                misspelled[i] = strcpy(misspelled[x], word_buffer_2);
                 num_misspelled++;
             }
         }
